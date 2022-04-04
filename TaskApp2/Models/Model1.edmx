@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TaskAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FINANCIAL_ITEM">
+          <Key>
+            <PropertyRef Name="FINANCIAL_ITEM_ID" />
+          </Key>
+          <Property Name="FINANCIAL_ITEM_ID" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PARTNER_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DATE" Type="date" />
+          <Property Name="AMOUNT" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="PARTNER">
+          <Key>
+            <PropertyRef Name="PARTNER_ID" />
+          </Key>
+          <Property Name="PARTNER_ID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PARTNER_NAME" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="PARENT_PARTNER_ID" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FEE_PERCENT" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FINANCIAL_ITEM">
+          <End Role="PARTNER" Type="Self.PARTNER" Multiplicity="0..1" />
+          <End Role="FINANCIAL_ITEM" Type="Self.FINANCIAL_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARTNER">
+              <PropertyRef Name="PARTNER_ID" />
+            </Principal>
+            <Dependent Role="FINANCIAL_ITEM">
+              <PropertyRef Name="PARTNER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTNER">
+          <End Role="PARTNER" Type="Self.PARTNER" Multiplicity="0..1" />
+          <End Role="PARTNER1" Type="Self.PARTNER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARTNER">
+              <PropertyRef Name="PARTNER_ID" />
+            </Principal>
+            <Dependent Role="PARTNER1">
+              <PropertyRef Name="PARENT_PARTNER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskAppDBModelStoreContainer">
+          <EntitySet Name="FINANCIAL_ITEM" EntityType="Self.FINANCIAL_ITEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PARTNER" EntityType="Self.PARTNER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FINANCIAL_ITEM" Association="Self.FK_FINANCIAL_ITEM">
+            <End Role="PARTNER" EntitySet="PARTNER" />
+            <End Role="FINANCIAL_ITEM" EntitySet="FINANCIAL_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTNER" Association="Self.FK_PARTNER">
+            <End Role="PARTNER" EntitySet="PARTNER" />
+            <End Role="PARTNER1" EntitySet="PARTNER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaskAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FINANCIAL_ITEM">
+          <Key>
+            <PropertyRef Name="FINANCIAL_ITEM_ID" />
+          </Key>
+          <Property Name="FINANCIAL_ITEM_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PARTNER_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DATE" Type="DateTime" Precision="0" />
+          <Property Name="AMOUNT" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="PARTNER" Relationship="Self.FK_FINANCIAL_ITEM" FromRole="FINANCIAL_ITEM" ToRole="PARTNER" />
+        </EntityType>
+        <EntityType Name="PARTNER">
+          <Key>
+            <PropertyRef Name="PARTNER_ID" />
+          </Key>
+          <Property Name="PARTNER_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PARTNER_NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PARENT_PARTNER_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FEE_PERCENT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="FINANCIAL_ITEM" Relationship="Self.FK_FINANCIAL_ITEM" FromRole="PARTNER" ToRole="FINANCIAL_ITEM" />
+          <NavigationProperty Name="PARTNER1" Relationship="Self.FK_PARTNER" FromRole="PARTNER" ToRole="PARTNER1" />
+          <NavigationProperty Name="PARTNER2" Relationship="Self.FK_PARTNER" FromRole="PARTNER1" ToRole="PARTNER" />
+        </EntityType>
+        <Association Name="FK_FINANCIAL_ITEM">
+          <End Role="PARTNER" Type="Self.PARTNER" Multiplicity="0..1" />
+          <End Role="FINANCIAL_ITEM" Type="Self.FINANCIAL_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARTNER">
+              <PropertyRef Name="PARTNER_ID" />
+            </Principal>
+            <Dependent Role="FINANCIAL_ITEM">
+              <PropertyRef Name="PARTNER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTNER">
+          <End Role="PARTNER" Type="Self.PARTNER" Multiplicity="0..1" />
+          <End Role="PARTNER1" Type="Self.PARTNER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARTNER">
+              <PropertyRef Name="PARTNER_ID" />
+            </Principal>
+            <Dependent Role="PARTNER1">
+              <PropertyRef Name="PARENT_PARTNER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskAppDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FINANCIAL_ITEM" EntityType="Self.FINANCIAL_ITEM" />
+          <EntitySet Name="PARTNER" EntityType="Self.PARTNER" />
+          <AssociationSet Name="FK_FINANCIAL_ITEM" Association="Self.FK_FINANCIAL_ITEM">
+            <End Role="PARTNER" EntitySet="PARTNER" />
+            <End Role="FINANCIAL_ITEM" EntitySet="FINANCIAL_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTNER" Association="Self.FK_PARTNER">
+            <End Role="PARTNER" EntitySet="PARTNER" />
+            <End Role="PARTNER1" EntitySet="PARTNER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TaskAppDBModelStoreContainer" CdmEntityContainer="TaskAppDBEntities">
+          <EntitySetMapping Name="FINANCIAL_ITEM">
+            <EntityTypeMapping TypeName="TaskAppDBModel.FINANCIAL_ITEM">
+              <MappingFragment StoreEntitySet="FINANCIAL_ITEM">
+                <ScalarProperty Name="FINANCIAL_ITEM_ID" ColumnName="FINANCIAL_ITEM_ID" />
+                <ScalarProperty Name="PARTNER_ID" ColumnName="PARTNER_ID" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARTNER">
+            <EntityTypeMapping TypeName="TaskAppDBModel.PARTNER">
+              <MappingFragment StoreEntitySet="PARTNER">
+                <ScalarProperty Name="PARTNER_ID" ColumnName="PARTNER_ID" />
+                <ScalarProperty Name="PARTNER_NAME" ColumnName="PARTNER_NAME" />
+                <ScalarProperty Name="PARENT_PARTNER_ID" ColumnName="PARENT_PARTNER_ID" />
+                <ScalarProperty Name="FEE_PERCENT" ColumnName="FEE_PERCENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

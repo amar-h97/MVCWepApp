@@ -1,0 +1,42 @@
+﻿@model TaskApp2.Models.FINANCIAL_ITEM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FINANCIAL_ITEM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTNER.PARTNER_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTNER.PARTNER_NAME)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AMOUNT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AMOUNT)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FINANCIAL_ITEM_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

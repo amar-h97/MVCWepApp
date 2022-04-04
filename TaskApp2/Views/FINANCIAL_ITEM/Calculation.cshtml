@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TaskApp2.Models.Calculation>
+
+@{
+    ViewBag.Title = "Calculation";
+}
+
+<h2>Calculation</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PARTNER_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Team_purchase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_purchase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_commission)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PARTNER_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team_purchase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_purchase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_commission)
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

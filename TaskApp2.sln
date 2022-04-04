@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskApp2", "TaskApp2\TaskApp2.csproj", "{982D7BFD-72C3-4765-91A4-07D7C32DD66A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{982D7BFD-72C3-4765-91A4-07D7C32DD66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982D7BFD-72C3-4765-91A4-07D7C32DD66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982D7BFD-72C3-4765-91A4-07D7C32DD66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982D7BFD-72C3-4765-91A4-07D7C32DD66A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE0DE39D-4972-4F5D-81D3-E33608635B41}
+	EndGlobalSection
+EndGlobal
